@@ -3,7 +3,7 @@ from mesa.time import SimultaneousActivation
 from mesa.space import Grid
 
 from robot import Robot
-from cell import Cell
+from trash import Trash
 
 
 class Clean(Model):
@@ -12,17 +12,15 @@ class Clean(Model):
 
         self.grid = Grid(height, width, torus=True)
 
-        robot = Robot((1, 1), self)
-        self.grid.place_agent(robot, (1, 1))
+        robot = Robot((25, 25), self)
+        self.grid.place_agent(robot, (25, 25))
         self.schedule.add(robot)
 
         for (contents, x, y) in self.grid.coord_iter():
-            if x != 1 and y != 1:
-                cell = Cell((x, y), self)
-                if self.random.random() < 0.1:
-                    cell.state = cell.DIRTY
-                    self.grid.place_agent(cell, (x, y))
-                    self.schedule.add(cell)
+            if self.random.random() < 0.7 and self.grid.is_cell_empty((x, y)):
+                trash = Trash((x, y), self)
+                self.grid.place_agent(trash, (x, y))
+                self.schedule.add(trash)
 
         self.running = True
 
