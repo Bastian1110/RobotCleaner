@@ -9,7 +9,11 @@ from model import Clean
 CANVAS_WIDTH = 600
 CANVAS_HEIGHT = 600
 
-canvas_element = CanvasGrid(portrayal, 50, 50, CANVAS_WIDTH, CANVAS_HEIGHT)
+TABLE_SIZE = 9
+
+canvas_element = CanvasGrid(
+    portrayal, TABLE_SIZE, TABLE_SIZE, CANVAS_WIDTH, CANVAS_HEIGHT
+)
 
 server = ModularServer(Clean, [canvas_element], "Cleaner Robots")
 
