@@ -22,6 +22,9 @@ model_params = {
     "trashRate": UserSettableParameter(
         "slider", "Trash %", value=0.5, min_value=0.1, max_value=1, step=0.01
     ),
+    "maxSteps": UserSettableParameter(
+        "number", "Max Steps", value=100, min_value=1, max_value=10000
+    ),
     "size": TABLE_SIZE,
 }
 
